@@ -1,6 +1,14 @@
 {
   "name": "@mi6/mi6-styles",
-  "version": "1.1.1",
+  "version": "1.0.0",
+  "description": "Librería Angular estilos para el proyecto MI6",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mois6Guerrero/mi6-lib-styles.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "peerDependencies": {
     "@angular/common": "^21.2.15",
     "@angular/core": "^21.2.15",
@@ -19,3 +27,4 @@
     }
   }
 }
+
