@@ -1,0 +1,2319 @@
+<!-- MI6 PrimeNG Demo -->
+<div class="demo-container">
+
+  <div class="mi6-wrapper flex-container">
+    <div class="aside">
+      <button (click)="changeMenu()">Cambiar menu </button>
+      <p-panel-menu class="mi6-ux-menubar mi6-ux-menubar--vertical"
+        [ngClass]="{'is-collapsed': menuType() === 'collapsed'}" ariaLabel="Menú de navegación" [model]="items2">
+
+        <ng-template #item let-item>
+          <!-- Espaciador -->
+          @if(item.kind === 'spacer'){
+          <div class="mi6-ux-vspacer" aria-hidden="true"></div>
+          }
+          <!-- Subitem -->
+          @if(item.kind === 'subitem' && item.expanded){
+          <a class="mi6-ux-vtile mi6-ux-vtile--sub" [class.is-selected]="item.state === 'selected'"
+            [class.is-disabled]="item.state === 'disabled'" [class.hovered]="item.state === 'hovered'">
+            <span class="mi6-ux-vtext">{{ item.label }}</span>
+          </a>
+          }
+
+          <!-- Item -->
+          <a class="mi6-ux-vtile" [class.is-selected]="item.state === 'selected'"
+            [class.is-disabled]="item.state === 'disabled'" [class.hovered]="item.state === 'hovered'"
+            [class.is-collapsed]="menuType() === 'collapsed'">
+            @if(item.showIcon !== false){
+            <span class="mi6-ux-vicon">
+              <i [class]="item.icon"></i>
+            </span>
+            }
+
+            <span class="mi6-ux-vtext">{{ item.label }} state:{{item.state}}</span>
+
+            <span class="mi6-ux-vaction">
+              @if(item.items){
+              <i [class]="{'pi pi-angle-down':item.expanded,'pi pi-angle-right':!item.expanded}"></i>
+              }
+            </span>
+          </a>
+        </ng-template>
+      </p-panel-menu>
+    </div>
+  </div>
+  <div class="mi6-wrapper flex-container">
+    <p-tabs value="/dashboard">
+      <p-tablist>
+        @for(tab of tabsMenu; track tab.route){
+        <p-tab [value]="tab.route" [routerLink]="tab.route" class="flex items-center !gap-2 text-inherit">
+          <i [class]="tab.icon"></i>
+          <span>{{ tab.label }}</span>
+        </p-tab>
+        }
+      </p-tablist>
+    </p-tabs>
+
+    <p-tabs value="0">
+      <p-tablist>
+
+        @for (tab of tabs; track tab.value) {
+        <p-tab [value]="tab.value">{{ tab.title }}</p-tab>
+        }
+      </p-tablist>
+      <p-tabpanels>
+        <!-- eslint-disable-next-line @angular-eslint/template/cyclomatic-complexity -->
+        @for (tab of tabs; track tab.value) {
+        <p-tabpanel [value]="tab.value">
+          <p class="m-0">{{ tab.content }}</p>
+        </p-tabpanel>
+        }
+      </p-tabpanels>
+    </p-tabs>
+    <p-tabs value="0">
+      <p-tablist>
+
+        <p-tab value="1">Content I</p-tab>
+        <p-tab value="2">Content II</p-tab>
+        <p-tab value="3">Content III</p-tab>
+
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="1">
+          <p class="m-0">contenido 1</p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">contenido 2</p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">contenido 3</p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+
+
+    <h3>TABS component</h3>
+
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">Perfil</p-tab>
+        <p-tab value="1">Registro mercantil y RUT</p-tab>
+        <p-tab value="2">Terceros</p-tab>
+        <p-tab value="3" disabled>Establecimientos</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <p class="m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+            dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
+            modi.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+
+    <p-tabs value="0" class="d-tablet">
+      <p-tablist>
+        <p-tab value="0">Perfil</p-tab>
+        <p-tab value="1">Registro mercantil y RUT</p-tab>
+        <p-tab value="2">Terceros</p-tab>
+        <p-tab value="3" disabled>Establecimientos</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <p class="m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+            dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
+            modi.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+    <!--  Small class component -->
+
+    <p-tabs value="0" class="d-small">
+      <p-tablist>
+        <p-tab value="0">Perfil</p-tab>
+        <p-tab value="1">Registro mercantil y RUT</p-tab>
+        <p-tab value="2">Terceros</p-tab>
+        <p-tab value="3" disabled>Establecimientos</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <p class="m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+            dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
+            modi.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+
+    <p-tabs value="0" class="d-tablet d-small">
+      <p-tablist>
+        <p-tab value="0">Perfil</p-tab>
+        <p-tab value="1">Registro mercantil y RUT</p-tab>
+        <p-tab value="2">Terceros</p-tab>
+        <p-tab value="3" disabled>Establecimientos</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p class="m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <p class="m-0">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+            dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
+            modi.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
+            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
+            impedit quo minus.
+          </p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+
+    <p-tabs value="0" class="d-small">
+      <p-tablist>
+        <p-tab value="0">
+          <i class="pi pi-user" style="font-size: 16px;"></i> Perfil <p-badge value="6" severity="success"
+            badgeSize='small'></p-badge></p-tab>
+        <p-tab value="1">
+          <i class="pi pi-building" style="font-size: 16px;"></i>
+          Registro mercantil y RUT<p-badge value="1" severity="warn" badgeSize='small'></p-badge></p-tab>
+        <p-tab value="2"><i class="pi pi-users" style="font-size: 16px;"></i>Terceros<p-badge value="1" severity="warn"
+            badgeSize='small'></p-badge></p-tab>
+        <p-tab value="3" disabled><i class="pi pi-building" style="font-size: 16px;"></i>Establecimientos</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <p class="m-0">
+
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <p class="m-0">
+
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <p class="m-0">
+
+          </p>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <p class="m-0">
+
+          </p>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+
+
+
+    <hr>
+
+    <p-stepper [value]="1" aria-label="Stepper" [linear]="true">
+      <p-step-list>
+        <p-step [value]="1">Label</p-step>
+        <p-step [value]="2">Label</p-step>
+        <p-step [value]="3">Label</p-step>
+        <p-step [value]="4">Label</p-step>
+      </p-step-list>
+      <p-step-panels>
+        <p-step-panel [value]="1" role="tabpanel">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex-custom-container">
+              <div>
+                Content I
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="2" role="tabpanel">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex-custom-container">
+              <div>
+                Content II
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
+              <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="3" role="tabpanel">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex-custom-container">
+              <div>
+                Content III
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+        <p-step-panel [value]="4">
+          <ng-template #content let-activateCallback="activateCallback">
+            <div class="flex-custom-container">
+              <div>
+                Content IV
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+            </div>
+          </ng-template>
+        </p-step-panel>
+      </p-step-panels>
+    </p-stepper>
+    <!-- 
+  d-custom-step-horizontal
+  d-custom-step-horizontal d-custom-step-circle
+  
+  d-custom-step-top-line
+
+  d-custom-step-vertical
+  
+
+  
+   -->
+    <div class="mi6-wrapper flex-container">
+      <h3>EJEMPLO Stepper (pasos) con tonos y color básico</h3>
+      <!-- Implementacion de tonos y color -->
+      <div>
+        <p-stepper [value]="1">
+          <p-step-list>
+            <p-step [value]="1">Label</p-step>
+            <p-step [value]="2">Label</p-step>
+            <p-step [value]="3">Label</p-step>
+            <p-step [value]="4">Label</p-step>
+          </p-step-list>
+          <p-step-panels>
+            <p-step-panel [value]="1">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content I
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content II
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="3">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content III
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="4">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content IV
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-panels>
+        </p-stepper>
+      </div>
+      <!-- Implementacion de forma MI6 horizontal -->
+      <h3>EJEMPLO Stepper (pasos) custom mi6</h3>
+      <div>
+        <p-stepper [value]="1" class="d-custom-step-horizontal">
+          <p-step-list>
+            <p-step [value]="1">Label</p-step>
+            <p-step [value]="2">Label</p-step>
+            <p-step [value]="3">Label</p-step>
+            <p-step [value]="4"><span>Label</span><span>Sub label</span></p-step>
+          </p-step-list>
+          <p-step-panels>
+            <p-step-panel [value]="1">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content I
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content II
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="3">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content III
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+            <p-step-panel [value]="4">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content IV
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-panels>
+        </p-stepper>
+      </div>
+
+
+      <!-- Implementacion de forma mi6 vertical -->
+
+      <div>
+        <p-stepper [value]="activeStep" class="d-custom-step-vertical">
+          <p-step-item [value]="1">
+            <p-step>
+              <div class="d-custom-step-label"><span>Label</span><span>Sub Text</span></div>
+            </p-step>
+
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  Vertical
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Next" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+
+          <p-step-item [value]="2">
+            <p-step>Header II</p-step>
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+
+                  Content II
+
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" (onClick)="activateCallback(1)" />
+                  <p-button label="Next" (onClick)="activateCallback(3)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+
+          <p-step-item [value]="3">
+            <p-step>Header III</p-step>
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  Content III
+
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+        </p-stepper>
+      </div>
+
+      <!-- Vertical sin número -->
+      <h3>Vertical sin número</h3>
+      <i class="pi pi-check"></i>
+      <div>
+        <p-stepper [(value)]="activeStep" class="d-custom-step-vertical d-not-number-vertical">
+          <p-step-item [value]="1">
+            <p-step>Header I </p-step>
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  Vertical
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Next" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+
+          <p-step-item [value]="2">
+            <p-step>Header II</p-step>
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+
+                  Content II
+
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" (onClick)="activateCallback(1)" />
+                  <p-button label="Next" (onClick)="activateCallback(3)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+
+          <p-step-item [value]="3">
+
+            <p-step>
+              <div class="d-custom-step-label"><span>Label</span><span>Sub Text</span></div>
+            </p-step>
+            <p-step-panel>
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  Content III
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-item>
+        </p-stepper>
+      </div>
+      <hr />
+
+      <!-- implementación barra arriba -->
+      <div>
+        <p-stepper [value]="1">
+
+          <p-step-panels>
+            <p-step-panel [value]="1">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content I
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content II
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="activateCallback(1)" />
+                  <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="activateCallback(3)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="92">
+              <ng-template #content let-activateCallback="activateCallback">
+                <div class="flex-custom-container">
+                  <div>
+                    Content III
+                  </div>
+                </div>
+                <div class="button-wrapper">
+                  <p-button label="Back" icon="pi pi-arrow-left" iconPos="right" (onClick)="activateCallback(2)" />
+                </div>
+              </ng-template>
+            </p-step-panel>
+          </p-step-panels>
+
+          <p-step-list class="d-custom-step-top-line">
+            <p-step [value]="1"><span>Sub text</span><span>Label</span></p-step>
+            <p-step [value]="2"><span>Sub text</span><span>Label</span></p-step>
+            <p-step [value]="92"><span>Sub text</span><span>Label</span></p-step>
+          </p-step-list>
+        </p-stepper>
+      </div>
+    </div>
+
+    <hr>
+    <h3>Stepper personalizado</h3>
+    <!--  Custom de steppers -->
+    <style>
+      .test-button button {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        border-color: #2b2d45;
+        color: #2b2d45;
+      }
+
+      .test-button button:hover {
+        background-color: #41D78C;
+        border: 2px solid #41D78C;
+      }
+
+      .test-button.p-step-active button {
+        border: 2px solid #41D78C;
+        background-color: white;
+      }
+
+      .test-button.p-step-active:last-child button {
+        border: 2px solid #41D78C;
+        background-color: rgb(92, 189, 32);
+        color: white;
+      }
+    </style>
+    <div>
+      <p-stepper [(value)]="activeStep">
+        <p-step-list>
+          <p-step [value]="1" class="test-button">
+            <ng-template #content let-activateCallback="activateCallback" let-value="value">
+              <button class="test-button" (click)="activateCallback()">
+                <span class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center" [ngClass]="{
+                              'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                              'border-surface': value > activeStep
+                          }">
+                  <i class="pi pi-user"></i>
+                </span>
+              </button>
+            </ng-template>
+          </p-step>
+
+          <p-step [value]="2" class="test-button">
+            <ng-template #content let-activateCallback="activateCallback" let-value="value">
+              <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                <span class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center" [ngClass]="{
+                              'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                              'border-surface': value > activeStep
+                          }">
+                  <i class="pi pi-star"></i>
+                </span>
+              </button>
+            </ng-template>
+          </p-step>
+
+          <p-step [value]="3" class="test-button">
+            <ng-template #content let-activateCallback="activateCallback" let-value="value">
+              <button class="bg-transparent border-0 inline-flex flex-col gap-2" (click)="activateCallback()">
+                <span class="rounded-full border-2 w-12 h-12 inline-flex items-center justify-center" [ngClass]="{
+                              'bg-primary text-primary-contrast border-primary': value <= activeStep,
+                              'border-surface': value > activeStep
+                          }">
+                  <i class="pi pi-id-card"></i>
+                </span>
+              </button>
+            </ng-template>
+          </p-step>
+        </p-step-list>
+
+        <p-step-panels>
+          <p-step-panel [value]="1">
+            <ng-template #content>
+
+              Custom Content 1
+
+            </ng-template>
+          </p-step-panel>
+
+          <p-step-panel [value]="2">
+            <ng-template #content>
+              Custom Content 2
+            </ng-template>
+          </p-step-panel>
+
+          <p-step-panel [value]="3">
+            <ng-template #content>
+              Custom Content 3
+            </ng-template>
+          </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+    </div>
+
+    <hr />
+    <h3>Sin números estilo Mi6</h3>
+    <p-stepper [(value)]="activeStep" class='d-custom-step-horizontal d-custom-step-circle'>
+      <p-step-list>
+        <p-step [value]="1">Label 1
+        </p-step>
+
+        <p-step [value]="2">Label 2
+        </p-step>
+
+        <p-step [value]="3">
+          <span>Label 3</span>
+          <span>Sub label 3</span>
+        </p-step>
+      </p-step-list>
+
+      <p-step-panels>
+        <p-step-panel [value]="1">
+          <ng-template #content>
+            Custom Content 1
+          </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="2">
+          <ng-template #content>
+            Custom Content 2
+          </ng-template>
+        </p-step-panel>
+
+        <p-step-panel [value]="3">
+          <ng-template #content>
+            Custom Content 3
+          </ng-template>
+        </p-step-panel>
+      </p-step-panels>
+    </p-stepper>
+
+    <hr />
+
+    <div class="mi6-wrapper flex-container">
+      <div class="card-example">
+        <h3>EJEMPLO COMPONENTE CARD</h3>
+        <div class="full-width">
+          <p-card header="Simple Card">
+            <p class="m-0">
+              Lorem ipsum dolor sit amet...
+            </p>
+          </p-card>
+        </div>
+      </div>
+
+      <div class="card-example">
+        <div class="card-example-figma">
+          <h3>EJEMPLO COMPONENTE CARD</h3>
+          <p-card header="Simple Card" subheader='Sub titulo simple' class="d-custom-card">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none"
+                class="d-card-icon">
+                <path
+                  d="M12.25 10V8.03125C12.25 6.63328 11.1167 5.5 9.71875 5.5H8.59375C8.12776 5.5 7.75 5.12224 7.75 4.65625V3.53125C7.75 2.13328 6.61672 1 5.21875 1H3.8125M7.73587 11.1109L8.875 12.25M5.5 1H1.84375C1.37776 1 1 1.37776 1 1.84375V14.2188C1 14.6847 1.37776 15.0625 1.84375 15.0625H11.4062C11.8722 15.0625 12.25 14.6847 12.25 14.2188V7.75C12.25 4.02208 9.22792 1 5.5 1ZM8.3125 9.71875C8.3125 10.8061 7.43106 11.6875 6.34375 11.6875C5.25644 11.6875 4.375 10.8061 4.375 9.71875C4.375 8.63144 5.25644 7.75 6.34375 7.75C7.43106 7.75 8.3125 8.63144 8.3125 9.71875Z"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <p>
+              Lorem ipsum dolor sit amet...
+            </p>
+          </p-card>
+        </div>
+      </div>
+
+      <h3>ng-tempalte</h3>
+
+      <!--Se debe confirmar la versión de primeNG ya que en pruebas no se soporta #header ni #subtitle-->
+      <style>
+        .test-image {
+          width: 100%;
+          height: auto;
+        }
+
+        .test-container {
+          width: 100%;
+          height: 100px;
+          overflow: hidden;
+        }
+      </style>
+      <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+        <ng-template #header>
+          <div class="test-container">
+            <img alt="Card" class="test-image" src="https://picsum.photos/200/300" />
+          </div>
+
+        </ng-template>
+        <!-- <ng-template #title> Advanced Card </ng-template> -->
+        <ng-template pTemplate='title'> Advanced Card </ng-template>
+        <ng-template #subtitle> Card subtitle </ng-template>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam
+          deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
+          quas!
+        </p>
+        <ng-template #footer>
+          <div class="flex-row">
+            <p-button label="Cancel" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" />
+            <p-button label="Save" class="w-full" styleClass="w-full" />
+          </div>
+        </ng-template>
+      </p-card>
+
+
+      <div class="card-example">
+
+
+        <p-card class="d-custom-card">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none"
+              class="d-card-icon">
+              <path
+                d="M12.25 10V8.03125C12.25 6.63328 11.1167 5.5 9.71875 5.5H8.59375C8.12776 5.5 7.75 5.12224 7.75 4.65625V3.53125C7.75 2.13328 6.61672 1 5.21875 1H3.8125M7.73587 11.1109L8.875 12.25M5.5 1H1.84375C1.37776 1 1 1.37776 1 1.84375V14.2188C1 14.6847 1.37776 15.0625 1.84375 15.0625H11.4062C11.8722 15.0625 12.25 14.6847 12.25 14.2188V7.75C12.25 4.02208 9.22792 1 5.5 1ZM8.3125 9.71875C8.3125 10.8061 7.43106 11.6875 6.34375 11.6875C5.25644 11.6875 4.375 10.8061 4.375 9.71875C4.375 8.63144 5.25644 7.75 6.34375 7.75C7.43106 7.75 8.3125 8.63144 8.3125 9.71875Z"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div>
+            <span>
+              Asignaciones
+            </span>
+            <span>
+              Declaraciones asignadas para inspección y actas pendientes para firma.
+            </span>
+          </div>
+          <ng-template pTemplate='footer'>
+            <div>
+              <i class="pi pi-bell" style="font-size: 20px;"></i>
+              Titulo
+            </div>
+            <div>
+              Descripción de la ayuda o instrucción
+            </div>
+          </ng-template>
+        </p-card>
+        <p-card class="d-custom-card custom-dimensions">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68" fill="none">
+              <path
+                d="M34 61.6622H4.70933C3.216 61.6622 2 60.4249 2 58.896V4.76622C2 3.23733 3.216 2 4.70933 2H50.2418C51.7351 2 52.9511 3.23733 52.9511 4.76622V30.4444M51.8476 42.9104V60.1691M60.289 51.536H43.4001M66 51.536C66 59.5243 59.6643 66 51.8489 66C44.0334 66 37.6978 59.5243 37.6978 51.536C37.6978 43.5478 44.0334 37.072 51.8489 37.072C59.6643 37.072 66 43.5478 66 51.536Z"
+                stroke="#39B7D9" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" />
+              <path
+                d="M16.4645 20.1265H11.0102V22.0892H14.9356V25.4385H11.0102V30.7932H6.65112V16.5923H16.4645V20.1265Z"
+                fill="#39B7D9" />
+              <path
+                d="M21.6712 23.6108C22.6952 22.5228 23.2001 21.4988 23.2001 20.553C23.2001 20.233 23.129 19.9842 22.9939 19.8135C22.8587 19.6428 22.6739 19.5504 22.4534 19.5504C22.1903 19.5504 21.9841 19.6855 21.8347 19.9628C21.6854 20.2402 21.6285 20.6526 21.6712 21.2144H17.4543C17.497 19.9699 17.7601 18.9459 18.2507 18.1495C18.7414 17.3459 19.3814 16.7557 20.1636 16.3859C20.9459 16.0162 21.8134 15.8242 22.7521 15.8242C24.4303 15.8242 25.6534 16.2366 26.4356 17.0544C27.2179 17.8793 27.6019 18.9317 27.6019 20.2117C27.6019 21.5628 27.1823 22.8286 26.3361 24.009C25.4899 25.1895 24.4374 26.1922 23.1645 27.0099H27.6587V30.601H17.5112V27.2517C19.2676 25.9148 20.6543 24.6988 21.6712 23.6108Z"
+                fill="#39B7D9" />
+              <path d="M28.2623 20.3116V16.1374H34.9183V30.8005H30.3459V20.3116H28.2623Z" fill="#39B7D9" />
+              <path
+                d="M37.9693 17.8009C38.9293 16.4782 40.4155 15.8169 42.4138 15.8169C44.412 15.8169 45.884 16.4853 46.8511 17.8151C47.8182 19.1449 48.3018 20.9582 48.3018 23.2622C48.3018 25.5662 47.8182 27.3938 46.8511 28.7307C45.884 30.0604 44.4049 30.7289 42.4138 30.7289C40.4227 30.7289 38.9293 30.0604 37.9693 28.7307C37.0093 27.4009 36.5258 25.5804 36.5258 23.2622C36.5258 20.944 37.0093 19.1307 37.9693 17.808V17.8009ZM43.6938 20.8373C43.4804 20.2969 43.0609 20.0267 42.4209 20.0267C41.7809 20.0267 41.3329 20.2969 41.1267 20.8373C40.9204 21.3778 40.8138 22.1813 40.8138 23.2551C40.8138 24.3289 40.9204 25.1538 41.1267 25.6942C41.3329 26.2347 41.7667 26.5049 42.4209 26.5049C43.0751 26.5049 43.4875 26.2347 43.6938 25.6942C43.9 25.1538 44.0067 24.3431 44.0067 23.2551C44.0067 22.1671 43.9 21.3778 43.6938 20.8373Z"
+                fill="#39B7D9" />
+            </svg>
+          </span>
+          <div>
+            <span>
+              Asignaciones
+            </span>
+            <span>
+              Presente su declaración de renta del año gravable (correspondiente al año anterior) o de forma
+              extemporánea (fuera del plazo reglamentado).
+            </span>
+          </div>
+          <ng-template pTemplate='footer'>
+            <div>
+              <i class="pi pi-bell" style="font-size: 20px;"></i>
+              Titulo
+            </div>
+            <div>
+              Descripción de la ayuda o instrucción
+            </div>
+          </ng-template>
+        </p-card>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+  <div class="mi6-wrapper flex-container">
+    <h3> EJEMPLO COMPONENTE CHIP</h3>
+    <div class="flex-row">
+      <span>Basico: </span>
+      <p-badge value="2" />
+    </div>
+
+    <!-- <h3>Procesos ok</h3> -->
+    <div class="flex-row">
+      <span>Básico:</span><p-badge [value]="22222" badgeSize="xlarge" /> |
+      <span>En proceso:</span><p-badge [value]="2" severity="info" badgeSize="xlarge" /> |
+      <span>Exitoso:</span><p-badge [value]="2" severity="success" badgeSize="xlarge" /> |
+      <span>Pendiente requerido:</span><p-badge [value]="2" severity="warn" badgeSize="xlarge" /> |
+      <span>Fallido:</span><p-badge [value]="2" severity="danger" badgeSize="xlarge" /> |
+    </div>
+    <div class="flex-row">
+      <h3>Tamaños</h3>
+    </div>
+    <div class="flex-row">
+
+      <span>Xlarge:</span><p-badge value="2" badgeSize="xlarge" /> |
+      <span>large:</span><p-badge [value]="2" badgeSize="large" severity="info" /> |
+      <span>Basico:</span><p-badge [value]="2" severity="success" /> |
+      <span>Small:</span><p-badge [value]="2" badgeSize="small" severity="warn" />
+
+    </div>
+    <h3>Tag component (notificaciones)</h3>
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Base</span>
+        <p-tag value={{testVar}} />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag value={{testVar}} severity="secondary" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag value={{testVar}} severity="info" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag value={{testVar}} severity="success" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag value={{testVar}} severity="warn" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag value={{testVar}} severity="danger" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag value={{testVar}} severity="contrast" />
+      </div>
+
+    </div>
+
+    <!-- borde redondo -->
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Base</span>
+        <p-tag value={{testVar}} [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag value={{testVar}} severity="secondary" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag value={{testVar}} severity="info" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag value={{testVar}} severity="success" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag value={{testVar}} severity="warn" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag value={{testVar}} severity="danger" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag value={{testVar}} severity="contrast" [rounded]="true" />
+      </div>
+
+    </div>
+
+    <h3>Tamaños</h3>
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag value={{testVar}} [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag value={{testVar}} severity="secondary" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag value={{testVar}} severity="info" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag value={{testVar}} severity="success" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag value={{testVar}} severity="warn" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag value={{testVar}} severity="danger" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag value={{testVar}} severity="contrast" [rounded]="true" class="tag-large" />
+      </div>
+
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Base</span>
+        <p-tag value={{testVar}} [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag value={{testVar}} severity="secondary" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag value={{testVar}} severity="info" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag value={{testVar}} severity="success" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag value={{testVar}} severity="warn" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag value={{testVar}} severity="danger" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag value={{testVar}} severity="contrast" [rounded]="true" />
+      </div>
+
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Small</span>
+        <p-tag value={{testVar}} [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag value={{testVar}} severity="secondary" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag value={{testVar}} severity="info" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag value={{testVar}} severity="success" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag value={{testVar}} severity="warn" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag value={{testVar}} severity="danger" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag value={{testVar}} severity="contrast" [rounded]="true" class="tag-small" />
+      </div>
+
+    </div>
+
+    <h3>Uso de iconos</h3>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" class="tag-large" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" class="tag-large" />
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" />
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" class="tag-small" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" class="tag-small" />
+      </div>
+    </div>
+
+
+    <h3>Icono Inverso </h3>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true"
+          class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true"
+          class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" class="tag-large inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" class="tag-large inverse" />
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" class="inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" class="inverse" />
+      </div>
+    </div>
+
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag icon="pi pi-user" value={{testVar}} [rounded]="true" class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag icon="pi pi-search" value={{testVar}} severity="secondary" [rounded]="true" class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag icon="pi pi-check" value={{testVar}} severity="info" [rounded]="true" class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag icon="pi pi-info-circle" value={{testVar}} severity="success" [rounded]="true"
+          class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag icon="pi pi-exclamation-triangle" value={{testVar}} severity="warn" [rounded]="true"
+          class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag icon="pi pi-times" value={{testVar}} severity="danger" [rounded]="true" class="tag-small inverse" />
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag icon="pi pi-cog" value={{testVar}} severity="contrast" [rounded]="true" class="tag-small inverse" />
+      </div>
+    </div>
+
+    <h3> Doble iconoco (se debe usar opción de template)</h3>
+    <div class="flex-row">
+      <div class="flex-column">
+        <span>Large</span>
+        <p-tag [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #fff;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #fff;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>Secundario</span>
+        <p-tag severity="secondary" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #000;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #000;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>en proceso</span>
+        <p-tag severity="info" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #000;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #000;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>Exitoso</span>
+        <p-tag severity="success" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #000;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #000;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>pendiente / r</span>
+        <p-tag severity="warn" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #000;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #000;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>Fallido</span>
+        <p-tag severity="danger" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #000;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #000;"></i>
+        </p-tag>
+      </div>
+      <div class="flex-column">
+        <span>Contraste</span>
+        <p-tag severity="contrast" [rounded]="true" class="tag-large">
+          <i class="pi pi-user" style="font-size: 12px; color: #fff;"></i>
+          <span>{{testVar}}</span>
+          <i class="pi pi-search" style="font-size: 12px; color: #fff;"></i>
+        </p-tag>
+      </div>
+    </div>
+
+    <h3>Template</h3>
+    <div class="flex-row">
+      <p-tag
+        [style]="{ height: '40px', border: '2px solid var(--p-border-light)', background: 'var(--p-primary-100)', color: 'var(--p-neutral-blue-900)', padding:'6px 22px'}">
+        <i class="pi pi-user" style="font-size: 24px; color: #333;"></i>
+        <span class="text-base">
+          User
+        </span>
+      </p-tag>
+    </div>
+
+
+
+  </div>
+
+
+  <h3>Iconos</h3>
+
+  <!-- Test de tamaños -->
+  <div style="border: 2px solid red; padding: 10px; margin: 10px 0;">
+    <h4>Test de Tamaños:</h4>
+    <p>Por Defecto: <i class="pi pi-user" style="color: red;"></i></p>
+    <p>Pequeño (16px): <i class="pi pi-user" style="font-size: 16px; color: red;"></i></p>
+    <p>Mediano (32px): <i class="pi pi-user" style="font-size: 32px; color: blue;"></i></p>
+    <p>Grande (64px): <i class="pi pi-user" style="font-size: 64px; color: green;"></i></p>
+    <p>Muy grande (160px): <i class="pi pi-user" style="font-size: 160px; color: green;"></i></p>
+  </div>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Librería</th>
+        <th>Icono</th>
+        <th>Prefijo</th>
+        <th>Nombre</th>
+        <th>Tamaño</th>
+        <th>Color</th>
+        <th>Atributos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PrimeIcons</td>
+        <td><i class="pi pi-user" style="font-size: 24px; color: #555;"></i></td>
+        <td>pi</td>
+        <td>user</td>
+        <td>50</td>
+        <td>#555</td>
+        <td>ariaLabel="User" title="User" size="50" color="#555"</td>
+      </tr>
+      <!-- Ejemplos de otras librerías de iconos - Comentados para usar solo PrimeIcons -->
+      <!--
+      <tr>
+        <td>Material Icons</td>
+        <td><i class="material-icons" style="font-size: 24px;">home</i></td>
+        <td>material</td>
+        <td>home</td>
+        <td>24</td>
+        <td>#555</td>
+        <td>Requiere Material Icons</td>
+      </tr>
+      <tr>
+        <td>Material Symbols</td>
+        <td><i class="material-symbols-outlined" style="font-size: 24px;">home</i></td>
+        <td>ms</td>
+        <td>home</td>
+        <td>24</td>
+        <td>#555</td>
+        <td>Requiere Material Symbols</td>
+      </tr>
+      <tr>
+        <td>Font Awesome 5</td>
+        <td><i class="fas fa-user" style="font-size: 18px;"></i></td>
+        <td>fas</td>
+        <td>user</td>
+        <td>18</td>
+        <td>#555</td>
+        <td>Requiere Font Awesome 5</td>
+      </tr>
+      <tr>
+        <td>Font Awesome 6</td>
+        <td><i class="fa-solid fa-gear"></i></td>
+        <td>fa-solid</td>
+        <td>gear</td>
+        <td>24</td>
+        <td>#555</td>
+        <td>Requiere Font Awesome 6</td>
+      </tr>
+      <tr>
+        <td>Bootstrap Icons</td>
+        <td><i class="bi bi-alarm" style="font-size: 20px;"></i></td>
+        <td>bi</td>
+        <td>alarm</td>
+        <td>20</td>
+        <td>#555</td>
+        <td>Requiere Bootstrap Icons</td>
+      </tr>
+      <tr>
+        <td>Material Design Icons</td>
+        <td><i class="mdi mdi-home" style="font-size: 22px;"></i></td>
+        <td>mdi</td>
+        <td>home</td>
+        <td>22</td>
+        <td>#555</td>
+        <td>Requiere Material Design Icons</td>
+      </tr>
+      -->
+      <tr>
+        <td>Accesibilidad (Funcional)</td>
+        <td><i class="pi pi-search" aria-label="Buscar" title="Buscar"></i></td>
+        <td>pi</td>
+        <td>search</td>
+        <td>24</td>
+        <td>#555</td>
+        <td>ariaLabel="Search" title="Search" size="24" color="#555"</td>
+      </tr>
+      <tr>
+        <td>Accesibilidad (Decorativo)</td>
+        <td><i class="pi pi-star" style="color: gold;"></i></td>
+        <td>pi</td>
+        <td>star</td>
+        <td>24</td>
+        <td>gold</td>
+        <td>ariaLabel="Star" title="Star" size="24" color="gold"</td>
+      </tr>
+      <tr>
+        <td>Estilos extras</td>
+        <td><i class="pi pi-check align-middle mr-2"></i></td>
+        <td>pi</td>
+        <td>check</td>
+        <td>24</td>
+        <td>#555</td>
+        <td>ariaLabel="Check" title="Check" size="24" color="#555" extraClass="align-middle mr-2"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br><br>
+
+
+
+  <span>--------------------------------------PrimeNG Card----------------------------------------------</span>
+  <br><br>
+  <p-chip label="Label Default" icon="pi pi-check" />
+  <br>
+  <br>
+  <p-chip label="Label Default" />
+  <br>
+  <br>
+  <p-chip label="Label Dian ICON CUSTOM" class="chip-large" icon="pi pi-check" [removable]="true" />
+  <br>
+  <br>
+  <br><br>
+  <span>--------------------------------------PrimeNG Card----------------------------------------------</span>
+  <span>--------------------------------------PrimeNG Card----------------------------------------------</span>
+  <p-card header="Simple Card">
+    Lorem ipsum dolor sit amet...
+  </p-card>
+
+  <br><br>
+  <span>--------------------------------------PrimeNG CheckboxModule
+    ----------------------------------------------</span>
+  <br>
+  <p-checkbox [(ngModel)]="checked" [binary]="true" />
+
+  <br><br>
+  <span>--------------------------------------PrimeNG InputTextModule
+    ----------------------------------------------</span>
+  <br>
+  <input type="text" pInputText [(ngModel)]="value" placeholder="prueba de place holder" />
+
+  <br><br>
+  <span>--------------------------------------PrimeNG InputGroupModule
+    ----------------------------------------------</span>
+  <br>
+  <p-inputgroup class="w-full md:!w-[30rem]">
+    <p-inputgroup-addon>
+      <i class="pi pi-clock"></i>
+    </p-inputgroup-addon>
+    <p-inputgroup-addon>
+      <i class="pi pi-star-fill"></i>
+    </p-inputgroup-addon>
+    <input type="text" pInputText placeholder="Price" />
+    <input type="text" pInputText placeholder="Price" disabled />
+    <p-inputgroup-addon>$</p-inputgroup-addon>
+    <p-inputgroup-addon>.00</p-inputgroup-addon>
+  </p-inputgroup>
+
+  <br><br>
+  <span>--------------------------------------PrimeNG AcordeonModule
+    ----------------------------------------------</span>
+  <br>
+  <p-accordion value="0">
+    <p-accordion-panel value="0">
+      <p-accordion-header>Header I</p-accordion-header>
+      <p-accordion-content>
+        <p class="m-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+          ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+          anim id est
+          laborum.
+        </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="1">
+      <p-accordion-header>Header II</p-accordion-header>
+      <p-accordion-content>
+        <p class="m-0">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+          totam rem
+          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+          explicabo. Nemo
+          enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+          dolores eos
+          qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+        </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="2">
+      <p-accordion-header>Header III</p-accordion-header>
+      <p-accordion-content>
+        <p class="m-0">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+          totam rem
+          aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+          explicabo. Nemo
+          enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
+          dolores eos
+          qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+        </p>
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+
+  <br><br>
+  <span>--------------------------------------Router Outlet---------------------------------------------</span>
+  <router-outlet></router-outlet>
+
+  <span>--------------------------------------PrimeNG Date Piker ----------------------------------------------</span>
+  <br />
+  <p-date-picker dateFormat="dd/mm/yy" showIcon="true"></p-date-picker>
+  <p-date-picker dateFormat="dd/mm/yy" showIcon="true"></p-date-picker>
+  <br />
+
+
+
+  <br><br>
+
+  <span>--------------------------------------PrimeNG time Piker ----------------------------------------------</span>
+  <br />
+  <p-date-picker dateFormat="dd/mm/yy" [showTime]="true" timeOnly="true" showIcon="true"
+    selectionMode="range"></p-date-picker>
+
+
+  <br><br>
+
+  <span>--------------------------------------PrimeNG Accordion----------------------------------------------</span>
+  <br>
+  <div style="margin-top: 20px; background-color: #F0F2F6; padding: 16px;">
+    <p-accordion #accordion [value]="0">
+      <p-accordion-panel [value]="0" style="border-radius: 6px;">
+        <p-accordion-header>
+          <span class="mi6-acc-header">
+            <!-- IZQUIERDA: icono + columna -->
+            <div class="mi6-acc-left">
+              <i class="pi pi-dollar mi6-acc-icon" aria-hidden="true"></i>
+
+              <div class="mi6-acc-titles">
+                <!-- Título a la izquierda y badge a la derecha -->
+                <div class="mi6-acc-title-row">
+                  <span class="mi6-acc-title">Responsabilidades</span>
+
+                  <span class="mi6-badge-compact flex items-center gap-1"
+                    style="background-color: #FCD34D; color: #616161;">
+                    <i style="margin-right: 3px; height: 12px !important;" class="pi pi-exclamation-circle"></i>
+                    Incompleto
+                  </span>
+
+                  <ng-template #toggleicon let-active="active">
+                    <!-- eslint-disable-next-line @angular-eslint/template/cyclomatic-complexity -->
+                    @if (active) {
+                    <i class="pi pi-chevron-down ml-2"></i>
+                    } @else {
+                    <i class="pi pi-chevron-up ml-2"></i>
+                    }
+                  </ng-template>
+                </div>
+                <span class="mi6-acc-subtitle">
+                  Incluya sus obligaciones fiscales como contribuyente, agente retenedor, declarante o
+                  responsable de impuestos administrados por la MI6.
+                </span>
+              </div>
+            </div>
+          </span>
+        </p-accordion-header>
+
+        <p-accordion-content>
+          <div class="mi6-panel">
+            <p-panel toggleable="false">
+              <!-- HEADER -->
+              <ng-template #header>
+                <span class="mi6-panel-header">
+                  <!-- IZQUIERDA: icono + columna -->
+                  <div class="mi6-panel-left">
+                    <i class="pi pi-euro mi6-panel-icon" aria-hidden="true"></i>
+
+                    <div class="mi6-panel-titles">
+                      <!-- Título a la izquierda y badge a la derecha -->
+                      <div class="mi6-panel-title-row">
+                        <span class="mi6-panel-title">Responsabilidades de Renta</span>
+
+                        <div style="flex-direction: row; display: flex; align-items: center;">
+                          <span class="mi6-badge-compact flex items-center gap-1"
+                            style="background-color: #FCD34D; color: #616161;">
+                            <i style="margin-right: 3px; height: 12px !important;" class="pi pi-exclamation-circle"></i>
+                            Completo
+                          </span>
+
+                          <button class="mi6-panel-button"
+                            style="background-color: transparent; border-color: '#FEF3C7'; color: '#616161';">Editar</button>
+                        </div>
+                      </div>
+
+                      <!-- Subtítulo ocupa toda la fila -->
+                      <span class="mi6-acc-subtitle">
+                        subtítulo
+                      </span>
+                    </div>
+                  </div>
+                </span>
+              </ng-template>
+
+              <hr style="border: none; border-top: 1px solid #d1d5db; margin: 0.5rem 0;" />
+
+              <!-- BODY -->
+              <ul class="mi6-panel-body">
+                <li>03 - Impuestos al patrimonio</li>
+                <li>05 - Impuesto renta y complementarios (régimen ordinario)</li>
+              </ul>
+            </p-panel>
+          </div>
+        </p-accordion-content>
+      </p-accordion-panel>
+
+    </p-accordion>
+  </div>
+
+  <br><br>
+  <span>--------------------------------------PrimeNG ScrollPanel----------------------------------------------</span>
+  <br>
+  <div style="background-color: #FAFAFA;">
+    <p-scrollpanel [style]="{ width: '100%', height: '150px' }">
+      <p>
+        Lorem ipsum dolor sit amet...
+      </p>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+      </p>
+      <p class="m-0">
+        At vero eos et accusamus et iusto odio dignissimos...
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet...
+      </p>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+      </p>
+      <p class="m-0">
+        At vero eos et accusamus et iusto odio dignissimos...
+      </p>
+    </p-scrollpanel>
+  </div>
+
+
+  <br><br>
+  <span>--------------------------------------PrimeNG InputField----------------------------------------------</span>
+  <br>
+  <div style="background-color: #FAFAFA;">
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <label for="username">Username</label>
+      <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="defaultValue" />
+      <small id="username-help">Enter your username to reset your password.</small>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; max-width: 400px; margin-top: 30px;">
+
+      <label for="username" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Username
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;"
+          title="Enter your username to reset your password" pTooltip="Enter your username" tooltipPosition="right"></i>
+      </label>
+
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user" style="color: #616161;"></i>
+        </p-inputgroup-addon>
+        <input pInputText placeholder="Username" [(ngModel)]="defaultValue" />
+      </p-inputgroup>
+
+
+      <small style="color: #4a4a4a; font-size: 0.875rem;">Enter your username to reset your password.</small>
+    </div>
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <label for="username">Username</label>
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <input pInputText placeholder="Username" [disabled]="true" [(ngModel)]="defaultValue" />
+      </p-inputgroup>
+      <small id="username-help">Enter your username to reset your password.</small>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <input pInputText placeholder="Username" [(ngModel)]="defaultValue" />
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>$</p-inputgroup-addon>
+        <p-inputnumber [(ngModel)]="defaultValue" placeholder="Price" />
+        <p-inputgroup-addon>.00</p-inputgroup-addon>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>www</p-inputgroup-addon>
+        <input pInputText [(ngModel)]="defaultValue" placeholder="Website" />
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-map"></i>
+        </p-inputgroup-addon>
+        <p-select [(ngModel)]="selectedCity" [options]="cities" optionLabel="name" placeholder="City"></p-select>
+      </p-inputgroup>
+
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <p-inputgroup style="width: 100%; max-width: 30rem;">
+        <p-inputgroup-addon>
+          <i class="pi pi-clock"></i>
+        </p-inputgroup-addon>
+        <p-inputgroup-addon>
+          <i class="pi pi-star-fill"></i>
+        </p-inputgroup-addon>
+        <input type="text" pInputText placeholder="Price" [(ngModel)]="price" />
+        <p-inputgroup-addon>$</p-inputgroup-addon>
+        <p-inputgroup-addon>.00</p-inputgroup-addon>
+      </p-inputgroup>
+
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <p-inputgroup>
+        <p-button label="Search" />
+        <input pInputText placeholder="Keyword" [(ngModel)]="defaultValue" />
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <input pInputText placeholder="Keyword" />
+        <p-inputgroup-addon>
+          <p-button icon="pi pi-search" severity="secondary" variant="text" (click)="menu.toggle($event)" />
+        </p-inputgroup-addon>
+      </p-inputgroup>
+      <p-menu #menu [model]="items" popup styleClass="!min-w-fit" />
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <p-button icon="pi pi-check" severity="secondary" />
+        </p-inputgroup-addon>
+        <input pInputText placeholder="Vote" [(ngModel)]="defaultValue" />
+        <p-inputgroup-addon>
+          <p-button icon="pi pi-times" severity="secondary" />
+        </p-inputgroup-addon>
+      </p-inputgroup>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <p-inputgroup>
+        <input type="text" pInputText placeholder="Price" />
+        <p-inputgroup-addon>
+          <p-radiobutton name="rb1" [(ngModel)]="defaultValue" />
+        </p-inputgroup-addon>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon><p-checkbox [(ngModel)]="defaultValue" [binary]="true" /></p-inputgroup-addon>
+        <input type="text" pInputText placeholder="Username" />
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon><p-checkbox [ngModel]="false" [binary]="true" /></p-inputgroup-addon>
+        <input type="text" pInputText placeholder="Website" />
+        <p-inputgroup-addon><p-radiobutton name="rb2" value="rb2" [(ngModel)]="defaultBoolean" /></p-inputgroup-addon>
+      </p-inputgroup>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+
+      <p-inputgroup>
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel>
+          <input pInputText id="over_label" [(ngModel)]="defaultValue" />
+          <label for="over_label">Over Label</label>
+        </p-floatlabel>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>$</p-inputgroup-addon>
+        <p-floatlabel variant="in">
+          <input pInputText id="in_label" [(ngModel)]="defaultValue" />
+          <label for="in_label">In Label</label>
+        </p-floatlabel>
+        <p-inputgroup-addon>.00</p-inputgroup-addon>
+      </p-inputgroup>
+
+      <p-inputgroup>
+        <p-inputgroup-addon>www</p-inputgroup-addon>
+        <p-floatlabel variant="on">
+          <input pInputText id="on_label" [(ngModel)]="defaultValue" />
+          <label for="on_label">On Label</label>
+        </p-floatlabel>
+      </p-inputgroup>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 30px;">
+      <p-inputgroup class="md:!w-80">
+        <p-inputgroup-addon>
+          <i class="pi pi-shopping-cart"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel>
+          <p-inputnumber [(ngModel)]="price" inputId="price" mode="currency" currency="USD" locale="en-US" />
+          <label for="price">Price</label>
+        </p-floatlabel>
+      </p-inputgroup>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="username" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Username
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;" pTooltip="Enter your username"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup class="input-error">
+        <p-inputgroup-addon>
+          <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <input pInputText id="username" placeholder="Username" [invalid]="true" [(ngModel)]="defaultValue" />
+        <p-inputgroup-addon>
+          <i class="pi pi-times"></i>
+        </p-inputgroup-addon>
+      </p-inputgroup>
+
+      <small class="error-message">Descripción del error</small>
+    </div>
+
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="fecha" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Fecha
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;" pTooltip="Enter your fecha"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup class="input-error">
+        <input pInputText id="fecha" placeholder="Fecha" [invalid]="true" [(ngModel)]="defaultValue" />
+        <p-inputgroup-addon>
+          <i class="pi pi-calendar"></i>
+        </p-inputgroup-addon>
+      </p-inputgroup>
+
+      <small class="error-message">Descripción del error</small>
+    </div>
+
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="celular" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Número de celular
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;"
+          pTooltip="Ingresa tu número de celular con el país" tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup>
+        <p-inputgroup-addon [ngStyle]="{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.4rem',
+      backgroundColor: '#f9fafb',
+      padding: '0 0.5rem',
+      cursor: 'pointer'
+    }">
+          <!-- Bandera -->
+          <img src="https://flagcdn.com/w20/co.png" width="20" height="15" alt="Colombia" style="border-radius: 2px;" />
+
+          <!-- Código -->
+          <span style="font-weight: 500; font-size: 0.9rem;">+57</span>
+
+          <!-- Pestaña (flecha) -->
+          <i class="pi pi-chevron-down" style="font-size: 0.8rem; color: #6b7280;"></i>
+        </p-inputgroup-addon>
+
+        <!-- Input del número -->
+        <input pInputText id="celular" placeholder="300 123 4567" maxlength="10" [(ngModel)]="numeroCelular"
+          [invalid]="numeroCelular.length > 0 && numeroCelular.length < 10" style="text-align: left;" />
+
+        <!-- Icono de validación -->
+        <!-- eslint-disable-next-line @angular-eslint/template/cyclomatic-complexity -->
+        @if(numeroCelular.length === 10) {
+        <p-inputgroup-addon [ngStyle]="{
+                      backgroundColor: '#ecfdf5',
+                      borderLeft: '1px solid #d1fae5',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '2rem'}">
+          <i class="pi pi-check-circle" style="color: #10b981; font-size: 1.2rem;"></i>
+        </p-inputgroup-addon>
+        }
+      </p-inputgroup>
+      <!-- eslint-disable-next-line @angular-eslint/template/cyclomatic-complexity -->
+      @if(numeroCelular.length > 0 && numeroCelular.length < 10) { <small class="error-message"
+        style="color: #b91c1c; font-size: 0.85rem;">
+        El número debe tener 10 dígitos
+        </small>
+        }
+    </div>
+
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="celular" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Número de celular
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;"
+          pTooltip="Ingresa tu número de celular con el país" tooltipPosition="right"></i>
+      </label>
+
+      <!-- Grupo deshabilitado -->
+      <p-inputgroup class="input-disabled">
+        <p-inputgroup-addon [ngStyle]="{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.4rem',
+      backgroundColor: '#f3f4f6',
+      padding: '0 0.5rem',
+      cursor: 'not-allowed',
+      opacity: '0.6'
+    }">
+          <!-- Bandera -->
+          <img src="https://flagcdn.com/w20/co.png" width="20" height="15" alt="Colombia" style="border-radius: 2px;" />
+
+          <!-- Código -->
+          <span style="font-weight: 500; font-size: 0.9rem;">+57</span>
+
+          <!-- Pestaña -->
+          <i class="pi pi-chevron-down" style="font-size: 0.8rem; color: #6b7280;"></i>
+        </p-inputgroup-addon>
+
+        <!-- Input deshabilitado -->
+        <input pInputText id="celular" placeholder="300 123 4567" maxlength="10" [(ngModel)]="numeroCelular" disabled
+          style="text-align: left;" />
+      </p-inputgroup>
+    </div>
+
+
+
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="password" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Contraseña
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;"
+          pTooltip="Ingresa una contraseña segura con mayúsculas, minúsculas, números y símbolos"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup>
+        <!-- Ícono de candado -->
+        <p-inputgroup-addon [ngStyle]="{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#f9fafb',
+      borderRight: '1px solid #d1d5db',
+      width: '2.5rem'
+    }">
+          <i class="pi pi-lock" style="color: #6b7280; font-size: 1.1rem;"></i>
+        </p-inputgroup-addon>
+
+        <!-- Input de contraseña -->
+        <input pInputText [type]="mostrarPassword ? 'text' : 'password'" id="password" placeholder="••••••••"
+          [(ngModel)]="password" (input)="evaluarSeguridadPassword()" style="text-align: left;" />
+
+        <!-- Ícono de mostrar/ocultar -->
+        <p-inputgroup-addon (click)="mostrarPassword = !mostrarPassword" [ngStyle]="{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      cursor: 'pointer',
+      backgroundColor: '#f9fafb',
+      borderLeft: '1px solid #d1d5db',
+      width: '2.5rem'
+    }">
+          <i [class]="mostrarPassword ? 'pi pi-eye-slash' : 'pi pi-eye'" style="color: #6b7280; font-size: 1.1rem;"></i>
+        </p-inputgroup-addon>
+      </p-inputgroup>
+
+      <!-- Indicador de seguridad -->
+      <div style="margin-top: 0.5rem; height: 6px; border-radius: 4px; width: 100%; background-color: #f3f4f6;">
+        <div [ngStyle]="{
+      height: '100%',
+      width: passwordStrength + '%',
+      borderRadius: '4px',
+      backgroundColor: colorBarra
+    }"></div>
+      </div>
+
+      <small [style.color]="colorBarra" style="font-size: 0.85rem; font-weight: 500;">
+        {{ textoSeguridad }}
+      </small>
+    </div>
+
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="fecha2" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Fecha2
+        <span>*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;" pTooltip="Enter your birthdate"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup>
+        <input pInputText id="fecha2" placeholder="Fecha 2" [(ngModel)]="defaultValue" />
+        <p-inputgroup-addon>
+          <i class="pi pi-calendar"></i>
+        </p-inputgroup-addon>
+      </p-inputgroup>
+
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <p-inputmask [(ngModel)]="defaultValue" mask="99/99/9999" placeholder="99/99/9999" slotChar="mm/dd/yyyy" />
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <div style="flex: 1 1 auto;">
+          <label for="locale-user" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            User Locale
+          </label>
+          <p-inputnumber [(ngModel)]="price" inputId="locale-user" [minFractionDigits]="2"
+            style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="locale-us" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            United States Locale
+          </label>
+          <p-inputnumber [(ngModel)]="price" inputId="locale-us" mode="decimal" locale="en-US" [minFractionDigits]="2"
+            style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="locale-german" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            German Locale
+          </label>
+          <p-inputnumber [(ngModel)]="price" inputId="locale-german" mode="decimal" locale="de-DE"
+            [minFractionDigits]="2" style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="locale-indian" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            Indian Locale
+          </label>
+          <p-inputnumber [(ngModel)]="price" inputId="locale-indian" mode="decimal" locale="en-IN"
+            [minFractionDigits]="2" style="width: 100%;"></p-inputnumber>
+        </div>
+
+
+        <div style="flex: 1 1 auto;">
+          <label for="currency-us" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            United States
+          </label>
+          <p-inputnumber [(ngModel)]="price" inputId="currency-us" mode="currency" currency="USD" locale="en-US"
+            style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="currency-germany" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            Germany
+          </label>
+          <p-inputnumber [(ngModel)]="price" mode="currency" inputId="currency-germany" currency="EUR" locale="de-DE"
+            style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="currency-india" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            India
+          </label>
+          <p-inputnumber [(ngModel)]="price" mode="currency" inputId="currency-india" currency="INR"
+            currencyDisplay="code" locale="en-IN" style="width: 100%;"></p-inputnumber>
+        </div>
+
+        <div style="flex: 1 1 auto;">
+          <label for="currency-japan" style="display: block; font-weight: 700; margin-bottom: 0.5rem;">
+            Japan
+          </label>
+          <p-inputnumber [(ngModel)]="price" mode="currency" inputId="currency-japan" currency="JPY" locale="jp-JP"
+            style="width: 100%;"></p-inputnumber>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <p-inputotp [(ngModel)]="defaultValue" />
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="username" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Username
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;" pTooltip="Enter your username"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup class="input-error">
+        <textarea rows="5" cols="30" pTextarea [(ngModel)]="defaultValue" [invalid]="true"
+          placeholder="Escribe algo"></textarea>
+      </p-inputgroup>
+
+      <small class="error-message">Descripción del error</small>
+    </div>
+
+
+    <div style="display: flex; flex-direction: column; gap: 0.25rem; width: 100%; max-width: 400px; margin-top: 30px;">
+      <label for="username" style="display: flex; align-items: center; gap: 0.25rem; font-weight: 500; color: #1a1a1a;">
+        Username
+        <span style="color: #B50801;">*</span>
+        <i class="pi pi-question-circle" style="color: #2B2D45; font-size: 1rem;" pTooltip="Enter your username"
+          tooltipPosition="right"></i>
+      </label>
+
+      <p-inputgroup class="input-error">
+        <textarea rows="5" cols="30" pTextarea [(ngModel)]="defaultValue" placeholder="Escribe algo"></textarea>
+      </p-inputgroup>
+
+      <small class="error-message">Descripción del error</small>
+    </div>
+
+
+
+    <span>--------------------------------------PrimeNG
+      ProgressBar----------------------------------------------</span>
+    <br>
+    <div style="margin-top: 20px; background-color: #F0F2F6; padding: 16px;">
+      <p-progressbar [value]="50">
+        <ng-template #content let-value>
+          <span>{{value}}/100</span>
+        </ng-template>
+      </p-progressbar>
+    </div>
+
+    <br><br>
+    <span>--------------------------------------PrimeNG
+      ProgressSpinner----------------------------------------------</span>
+    <br>
+    <div style="margin-top: 20px; background-color: #F0F2F6; padding: 16px;">
+      <p-progress-spinner ariaLabel="loading" />
+    </div>
+  </div>

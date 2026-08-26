@@ -1,0 +1,152 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "node_modules/*",
+    "dist/*",
+    "coverage/*",
+    "documentation/*",
+    "*.d.ts",
+    "tools/*.js"
+  ],
+  "overrides": [
+    {
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "projectService": true,
+        "sourceType": "module"
+      },
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        // Angular-specific rules - Core best practices
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "style": "camelCase",
+            "prefix": ["lib", "mi6", "app", "ngp"]
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "style": "kebab-case",
+            "prefix": ["lib", "mi6", "app", "ngp"]
+          }
+        ],
+        "@angular-eslint/no-output-on-prefix": "error",
+        "@angular-eslint/no-input-rename": "error",
+        "@angular-eslint/no-output-rename": "error",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "@angular-eslint/use-pipe-transform-interface": "error",
+        "@angular-eslint/prefer-on-push-component-change-detection": "off",
+        "@angular-eslint/prefer-standalone": "error",
+        "@angular-eslint/relative-url-prefix": "error",
+        "@angular-eslint/use-component-view-encapsulation": "warn",
+        "@angular-eslint/no-conflicting-lifecycle": "error",
+        "@angular-eslint/no-forward-ref": "error",
+        "@angular-eslint/no-lifecycle-call": "error",
+        "@angular-eslint/no-pipe-impure": "error",
+        "@angular-eslint/prefer-output-readonly": "error",
+        "@angular-eslint/use-injectable-provided-in": "error",
+        "@angular-eslint/contextual-lifecycle": "error",
+        "@angular-eslint/no-attribute-decorator": "error",
+        "@angular-eslint/no-empty-lifecycle-method": "error",
+        "@angular-eslint/component-class-suffix": "off",
+        "@angular-eslint/directive-class-suffix": "off",
+
+        // TypeScript-specific rules - Essential best practices
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-inferrable-types": "error",
+        "@typescript-eslint/no-var-requires": "error",
+        "@typescript-eslint/ban-ts-comment": "warn",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/prefer-optional-chain": "error",
+        "@typescript-eslint/no-floating-promises": "error",
+        "@typescript-eslint/await-thenable": "error",
+        "@typescript-eslint/no-misused-promises": "error",
+        "@typescript-eslint/require-await": "error",
+        "@typescript-eslint/no-unnecessary-type-assertion": "error",
+
+        // General ESLint rules - Code quality
+        "no-console": "warn",
+        "no-debugger": "error",
+        "no-duplicate-imports": "error",
+        "no-unused-expressions": "error",
+        "prefer-const": "error",
+        "no-var": "error",
+        "object-shorthand": "error",
+        "prefer-template": "error",
+        "no-trailing-spaces": "off",
+        "eol-last": "error",
+        "comma-dangle": ["error", "never"],
+        "quotes": ["error", "single", { "avoidEscape": true }],
+        "semi": ["error", "always"],
+        "curly": ["error", "all"],
+        "eqeqeq": ["error", "always"],
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-new-func": "error"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {
+        "@angular-eslint/template/interactive-supports-focus": "off",
+        "@angular-eslint/template/click-events-have-key-events": "error",
+        "@angular-eslint/template/mouse-events-have-key-events": "error",
+        "@angular-eslint/template/no-autofocus": "error",
+        "@angular-eslint/template/no-distracting-elements": "error",
+        "@angular-eslint/template/no-positive-tabindex": "error",
+        "@angular-eslint/template/prefer-control-flow": "error",
+        "@angular-eslint/template/conditional-complexity": ["error", { "maxComplexity": 6 }],
+        "@angular-eslint/template/cyclomatic-complexity": ["error", { "maxComplexity": 6 }],
+        "@angular-eslint/template/no-call-expression": "off",
+        "@angular-eslint/template/no-duplicate-attributes": "error",
+        "@angular-eslint/template/no-negated-async": "error",
+        //"@angular-eslint/template/no-any": "warn",
+        "@angular-eslint/template/use-track-by-function": "warn"
+      }
+    },
+    {
+      "files": ["*.spec.ts", "*.test.ts"],
+      "rules": {
+        //"@typescript-eslint/no-explicit-any": "off",
+        "no-console": "off",
+        "@angular-eslint/no-unsafe-any": "off",
+        "@angular-eslint/no-unsafe-assignment": "off",
+        "@angular-eslint/no-unsafe-call": "off",
+        "@angular-eslint/no-unsafe-member-access": "off",
+        "@angular-eslint/no-unsafe-return": "off"
+      }
+    },
+    {
+      "files": ["*.js"],
+      "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+      },
+      "env": {
+        "node": true,
+        "es6": true
+      },
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

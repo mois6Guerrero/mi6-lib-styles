@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.configFile": "projects/mi6-styles/src/styles/index.css"
+}

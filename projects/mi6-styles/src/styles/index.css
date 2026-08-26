@@ -1,0 +1,249 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+@import 'primeicons/primeicons.css';
+
+@theme {
+    --font-sans: "WorkSans",
+        "Ubuntu",
+        "Helvetica Neue",
+        system-ui,
+        -apple-system,
+        Segoe UI,
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    --color-app-bg: #f3f3f3;
+    --color-app-bg: white;
+    --spacing-mi6-gap: 1rem;
+}
+
+:root {
+
+    /*
+    --mi6-shell-background: #3366cc;
+    TODO: revisar en presents los tonos globales que corresponden 
+    a estos tonos del menu de storybook
+    */
+    --mi6-shell-background: #39b7d9;
+    --mi6-shell-text: #2b2d45;
+}
+
+/* BASE LAYER */
+
+@layer base {
+    h1 {
+        @apply text-2xl font-bold mb-0;
+    }
+
+    h2 {
+        @apply text-xl font-semibold mb-0;
+    }
+
+    h3 {
+        @apply text-lg font-semibold mb-0;
+    }
+
+    h4 {
+        @apply text-base font-semibold mb-0;
+    }
+
+    h5 {
+        @apply text-sm font-semibold mb-0;
+    }
+}
+
+/* UTILIDADES PARA ESTRUCTURA */
+
+@utility mi6-flex-wrapper {
+    @apply flex flex-col gap-3 w-full md:flex-row bg-white;
+}
+
+@utility mi6-content {
+    @apply flex flex-col gap-3 w-full;
+}
+
+@utility mi6-border-wrapper {
+    @apply flex flex-col border border-solid rounded-lg p-3 border-surface-300 gap-y-3;
+}
+
+@utility mi6-row {
+    @apply flex flex-row;
+}
+
+@utility mi6-title {
+    @apply text-base font-bold;
+}
+
+/* UTILIDADES PARA FORMS */
+
+@utility mi6-form {
+    @apply flex flex-col gap-2 mt-0.5;
+}
+
+@utility mi6-form-grid {
+    @apply flex flex-col sm:grid sm:grid-cols-2 gap-2;
+}
+
+@utility mi6-form-row {
+    @apply flex flex-row gap-2 flex-wrap;
+}
+
+@utility mi6-form-group {
+    @apply flex w-full sm:w-auto flex-col gap-2;
+}
+
+@utility mi6-form-group-full {
+    @apply col-span-full;
+}
+
+@utility mi6-form-actions {
+    @apply grid grid-cols-2 gap-3;
+
+    ::ng-deep .p-button {
+        @apply w-full;
+    }
+}
+
+@utility label-required {
+    @apply text-red-500;
+}
+
+/* UTILIDADES PARA SPINNER */
+
+@utility mi6-spinner-container {
+    @apply flex justify-center items-center w-full h-full;
+}
+
+@utility mi6-spinner-size {
+    @apply w-14 h-14;
+}
+
+/* UTILIDADES PARA TABLAS */
+
+@utility mi6-table {
+    @apply rounded;
+}
+
+/* UTILIDADES PARA BREADCRUMB */
+
+@utility mi6-bread-crum {
+    @apply pt-0 pl-0;
+}
+
+/* UTILIDADES PARA DATAVIEW Y CARDS */
+
+@utility mi6-card-wrapper {
+    @apply grid gap-4;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+}
+
+@utility mi6-card-content {
+    @apply flex flex-col gap-3;
+}
+
+@utility custom-card {
+    @apply flex flex-col;
+}
+
+@utility custom-card__header {
+    @apply flex flex-col gap-1.5;
+}
+
+@utility custom-card__header-info {
+    @apply flex justify-between items-center;
+}
+
+@utility custom-card__field {
+    @apply flex flex-col gap-1 mt-3;
+}
+
+@utility custom-card__row {
+    @apply grid gap-3 mt-3;
+}
+
+@utility custom-card__row--2 {
+    @apply grid-cols-2;
+}
+
+@utility custom-card__row--3 {
+    @apply grid-cols-3;
+}
+
+.custom-card__row .custom-card__field {
+    @apply mt-0;
+}
+
+@utility custom-card__field-label {
+    @apply text-base font-semibold uppercase text-surface-800;
+}
+
+@utility custom-card__field-value {
+    @apply text-xs font-semibold text-surface-500;
+}
+
+@utility custom-card__footer {
+    @apply flex justify-end items-center gap-2 mt-3 pt-3 border-t border-surface-200;
+}
+
+@utility custom-card__status {
+    @apply flex items-center gap-1.5 text-xs font-medium text-surface-500;
+}
+
+@utility custom-card__status-dot {
+    @apply w-[0.5625rem] h-[0.5625rem] rounded-full bg-surface-400;
+}
+
+@utility custom-card__status--activo {
+    @apply text-green-600;
+}
+
+@utility custom-card__status--inactivo {
+    @apply text-red-600;
+}
+
+.custom-card__status--activo .custom-card__status-dot {
+    @apply bg-green-600;
+}
+
+.custom-card__status--inactivo .custom-card__status-dot {
+    @apply bg-red-600;
+}
+
+.custom-card__header h3 {
+    @apply p-0 m-0 font-semibold text-base;
+}
+
+/* UTILIDADES PARA PAGINADOR */
+
+@utility grid-paginate {
+    @apply flex w-auto justify-center items-center mx-auto;
+}
+
+@utility label-paginator {
+    color: var(--p-paginator-current-page-report-color);
+}
+
+/* UTILIDADES PARA CHECKBOX */
+
+@utility custom-check {
+    @apply flex items-center gap-3 w-full h-full;
+}
+
+/* UTILIDADES PARA LISTAS */
+
+.minimal-list .list-item {
+    @apply flex justify-between items-center py-2 px-3 rounded-none m-0 border border-solid border-surface-300 transition-all duration-200;
+}
+
+.minimal-list .list-item .text {
+    @apply font-medium mr-2;
+}
+
+.minimal-list .list-item .header {
+    @apply font-bold mr-2;
+}
+
+.minimal-list .list-item .hint {
+    @apply text-sm opacity-80;
+}
