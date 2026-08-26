@@ -1,0 +1,37 @@
+name: Publish Angular Library
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@mi6'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npx ng build mi6-lib-styles
+
+      - name: Publish package
+        working-directory: ./dist/mi6-lib-styles
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
