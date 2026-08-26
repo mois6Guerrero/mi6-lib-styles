@@ -5,7 +5,6 @@
     "packageManager": "npm",
     "analytics": false
   },
-  
   "newProjectRoot": "projects",
   "projects": {
     "mi6-lib-styles": {
