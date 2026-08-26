@@ -29,10 +29,10 @@ jobs:
         run: npm ci
 
       - name: Build library
-        run: npx ng build mi6-lib-styles
+        run: npx ng build mi6-styles
 
       - name: Publish package
-        working-directory: ./dist/mi6-lib-styles
+        working-directory: ./dist/mi6-styles
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
