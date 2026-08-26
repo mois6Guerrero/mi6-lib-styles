@@ -31,7 +31,7 @@ jobs:
         run: npx ng build mi6-styles
 
       - name: Publish package
-        working-directory: ./dist/mi6-styles
+        working-directory: ./dist/mi6-lib-styles
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
