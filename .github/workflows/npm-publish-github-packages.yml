@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Build library
-        run: npx ng build mi6-lib-styles
+        run: npx ng build mi6_lib_styles
 
       - name: Publish package
         working-directory: ./dist/mi6_lib_styles
