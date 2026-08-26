@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "mi6_lib_styles": {
+    "mi6-lib-styles": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
